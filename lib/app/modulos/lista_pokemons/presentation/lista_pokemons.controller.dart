@@ -10,7 +10,8 @@ class ListaPokemonsController {
 
   //---------------------------------------- INIT ----------------------------------------
 
-  ///Metodo de inicialização do modulo. Realiza o bind e faz o carregamento da lista de pokemons
+  ///Metodo de inicialização do modulo.
+  ///- Realiza o bind e faz o carregamento da lista de pokemons
   Future<bool> init() async {
     bind();
     await loadPokemons();
@@ -31,6 +32,7 @@ class ListaPokemonsController {
     for (Pokemon pokemon in resultList) {
       pokemonsList.add(pokemon); //// Com o resultado da requisição, é populada a lista observavel.
     }
+    var p = "";
   }
 
   //----------------------------------- FAVORITAR POKEMON ----------------------------------

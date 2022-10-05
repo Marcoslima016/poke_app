@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'presentation.imports.dart';
 
 class ListaPokemonsView extends StatelessWidget {
   //
-  ListaPokemonsController controller = ListaPokemonsController();
+  late ListaPokemonsController controller;
 
-  ListaPokemonsView({Key? key}) : super(key: key);
+  ListaPokemonsView({Key? key}) : super(key: key) {
+    controller = ListaPokemonsController();
+    Get.put<ListaPokemonsController>(controller, permanent: true);
+  }
 
   //=========================================== WIDGET BUILD ===========================================
   @override
@@ -34,7 +38,7 @@ class ListaPokemonsView extends StatelessWidget {
             } else {
               //--- LISTA CARREGADA C SUCESSO ---
               //
-              return Container();
+              return Content();
             }
           } else {
             //-------------------------- LOADING (CARREGANDO LISTA) --------------------------

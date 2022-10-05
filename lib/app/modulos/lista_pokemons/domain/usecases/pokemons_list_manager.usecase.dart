@@ -1,7 +1,7 @@
 import '../entities/entities.imports.dart';
 import 'usecases.imports.dart';
 
-/// USECASE ['LIST MANAGER'].
+/// USECASE 'LIST MANAGER'.
 /// - Utilizo o termo 'list manger' para usecases responsaveis pelas
 /// acoes gerais relacionadas a uma lista.
 /// Normalmente esse usecase é composto de metodos utilizados para manipular uma lista,
