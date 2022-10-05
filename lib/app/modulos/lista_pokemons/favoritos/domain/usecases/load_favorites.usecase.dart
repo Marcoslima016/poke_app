@@ -1,11 +1,19 @@
+import '../domain.imports.dart';
+
 abstract class ILoadFavorites {
   Future call();
 }
 
 class LoadFavorites implements ILoadFavorites {
+  IFavoritesListRepository repository;
+
+  LoadFavorites({
+    required this.repository,
+  });
+
   @override
-  Future call() {
-    // TODO: implement call
-    throw UnimplementedError();
+  Future call() async {
+    var t = await repository.getFavorites();
+    var p = "";
   }
 }

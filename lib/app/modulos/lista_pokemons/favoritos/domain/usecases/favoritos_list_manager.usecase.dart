@@ -1,11 +1,19 @@
+import 'usecases.imports.dart';
+
 abstract class IFavoritosListManager {
-  Future load();
+  Future loadList();
 }
 
 class FavoritosListManager implements IFavoritosListManager {
+  ILoadFavorites usecaseLoadFavorites;
+
+  FavoritosListManager({
+    required this.usecaseLoadFavorites,
+  });
+
   @override
-  Future load() {
-    // TODO: implement load
-    throw UnimplementedError();
+  Future loadList() async {
+    var p = "";
+    await usecaseLoadFavorites();
   }
 }

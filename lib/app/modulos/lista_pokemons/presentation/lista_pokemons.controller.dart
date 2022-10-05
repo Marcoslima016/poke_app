@@ -55,12 +55,13 @@ class ListaPokemonsController {
 
   ///Carrega a lista de favoritos
   Future loadFavorites() async {
-    //
+    IFavoritosListManager favoritesListManager = Get.find<IFavoritosListManager>();
+    await favoritesListManager.loadList();
   }
 
   //----------------------------------- FAVORITAR POKEMON ----------------------------------
 
-  Future favoritarPokemon() async {
+  Future favoritarPokemon(Pokemon pokemonSelecionado) async {
     //
   }
 }
