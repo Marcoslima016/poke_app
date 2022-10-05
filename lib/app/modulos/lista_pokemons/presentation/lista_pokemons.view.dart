@@ -27,22 +27,28 @@ class ListaPokemonsView extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             //
-            //--------------------------- CARREGAMENTO FINALIZADO ----------------------------
-            // Quando o Future retornar um result, significa que o carregamento foi concluído.
+            //--------------------------- INICIALIZACAO FINALIZADA ----------------------------
+            // Quando o Future retornar um result, significa que a inicializacao foi concluída.
 
-            if (controller.loadListError.value == true) {
-              //
-              //----- ERRO NO CARREGAMENTO ------
-              //
-              return Container();
+            if (controller.loadingList.value == false) {
+              if (controller.loadListError.value == true) {
+                //
+                //---- ERRO NO CARREGAMENTO -----
+                //
+                return Container();
+              } else {
+                //--- LISTA CARREGADA C/ SUCESSO ---
+                //
+                return Content();
+              }
             } else {
-              //--- LISTA CARREGADA C SUCESSO ---
-              //
-              return Content();
+              //--- RECARREGANDO A LISTA ---
+
+              return Container();
             }
           } else {
-            //-------------------------- LOADING (CARREGANDO LISTA) --------------------------
-            // Enquanto o future não retornar resultado, signica que o carregamento esta em progresso
+            //------------------------------ INICIALIZANDO MODULO ------------------------------
+            // Enquanto o future não retornar resultado, signica que a inicializacao esta em progresso
             //
             return Container();
           }

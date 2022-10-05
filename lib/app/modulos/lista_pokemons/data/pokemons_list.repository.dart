@@ -32,6 +32,4 @@ class PokemonsListRepository implements IPokemonsListRepo {
 
     return resultList;
   }
-
-  //Future recuperarFavoritos
 }
