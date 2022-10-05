@@ -10,7 +10,7 @@ class ListaPokemonsController {
   RxList<Pokemon> pokemonsList = <Pokemon>[].obs;
 
   ///Lista que armazena os pokemons salvos como favoritos (persistida localmente)
-  RxList<Pokemon> favoritosList = <Pokemon>[].obs;
+  RxList<Pokemon> favoritesList = <Pokemon>[].obs;
 
   ///Indica se houve erro no carregamento da lista.
   RxBool loadListError = false.obs;
@@ -55,9 +55,16 @@ class ListaPokemonsController {
 
   ///Carrega a lista de favoritos
   Future loadFavorites() async {
-    IFavoritosListManager favoritesListManager = Get.find<IFavoritosListManager>();
-    await favoritesListManager.loadList();
+    IFavoritosListManager usecaseFavoritesListManager = Get.find<IFavoritosListManager>();
+    List<Pokemon> resultList = await usecaseFavoritesListManager.loadList();
+    for (Pokemon pokemon in resultList) {
+      favoritesList.add(pokemon); //// Com o resultado, é populada a lista observavel.
+    }
   }
+
+  //=========================================== FAVORITOS ===========================================
+  //Metodos relacionados a manipulacao de favoritos
+  //
 
   //----------------------------------- FAVORITAR POKEMON ----------------------------------
 

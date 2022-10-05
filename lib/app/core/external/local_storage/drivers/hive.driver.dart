@@ -33,13 +33,7 @@ class HiveDriver implements ILocalStorageDriver {
 
     List resultJson = await _box.get(key, defaultValue: []);
 
-    var p = "";
-
     return resultJson;
-
-    // var p = "";
-
-    // return [];
   }
 
   //------------------------------------------ PUT LIST -------------------------------------------

@@ -1,7 +1,8 @@
+import '../../../lista_pokemons.imports.dart';
 import '../domain.imports.dart';
 
 abstract class ILoadFavorites {
-  Future call();
+  Future<List<Pokemon>> call();
 }
 
 class LoadFavorites implements ILoadFavorites {
@@ -12,8 +13,7 @@ class LoadFavorites implements ILoadFavorites {
   });
 
   @override
-  Future call() async {
-    var t = await repository.getFavorites();
-    var p = "";
+  Future<List<Pokemon>> call() async {
+    return await repository.getFavorites();
   }
 }

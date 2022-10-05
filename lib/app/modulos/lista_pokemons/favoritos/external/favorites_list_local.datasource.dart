@@ -13,34 +13,24 @@ class FavoritesListLocalDatasource implements IFavoritesListDatasource {
     required this.localStorageDriver,
   });
 
+  //----------------------------------------- GET FAVORITES -----------------------------------------
+
   @override
-  Future getFavorites() async {
+  Future<List> getFavorites() async {
     List dbResult = await localStorageDriver.getList(key: _dbKey);
-
-    if (dbResult == []) return;
-
-    // Map resultMap = json.decode(resultJson);
-
-    // var t = resultJson.map((x) {
-    //   return PokemonModel.fromMap(json.decode(x));
-    // }).toList();
-
-    // var t = PokemonModel.fromJson(resultJson);
-
-    //--------------------------
-    List<Pokemon> favoritesList = [];
-    for (String resultJson in dbResult) {
-      favoritesList.add(PokemonModel.fromMap(json.decode(resultJson)));
-    }
-    var p = "";
+    return dbResult;
   }
+
+  //----------------------------------------- ADD FAVORITE -----------------------------------------
 
   @override
   Future addFavorite(Pokemon newFavorite) async {
-    // List favoritesList = await localStorageDriver.getList(key: _dbKey);
-    List favoritesList = [
-      // PokemonModel(nome: "teste2"),
-    ];
+    List dbList = await localStorageDriver.getList(key: _dbKey);
+    List<PokemonModel> favoritesList = [];
+
+    for (var resultJson in dbList) {
+      favoritesList.add(PokemonModel.fromMap(json.decode(resultJson)));
+    }
 
     PokemonModel newFavoriteModel = PokemonModel.fromEntity(newFavorite);
 
@@ -53,11 +43,4 @@ class FavoritesListLocalDatasource implements IFavoritesListDatasource {
 
     await localStorageDriver.putList(key: _dbKey, list: favoritesListMap);
   }
-
-  // @override
-  // Future deleteFavorite() {
-  //   // TODO: implement deleteFavorite
-  //   throw UnimplementedError();
-  // }
-  //
 }
