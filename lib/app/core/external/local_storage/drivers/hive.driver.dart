@@ -31,9 +31,15 @@ class HiveDriver implements ILocalStorageDriver {
   Future getList({required String key}) async {
     if (_initialized == false) await initHive();
 
-    var r = await _box.get(key, defaultValue: []);
+    List resultJson = await _box.get(key, defaultValue: []);
+
     var p = "";
-    return r;
+
+    return resultJson;
+
+    // var p = "";
+
+    // return [];
   }
 
   //------------------------------------------ PUT LIST -------------------------------------------
@@ -42,8 +48,13 @@ class HiveDriver implements ILocalStorageDriver {
   Future putList({required String key, required List list}) async {
     if (_initialized == false) await initHive();
 
-    // TODO: implement putList
-    throw UnimplementedError();
+    await _box.put(key, list);
+
+    // int id = 0;
+    // for (var item in list) {
+    //   put(key: id.toString(), value: item);
+    //   id++;
+    // }
   }
 
   //-------------------------------------------- GET --------------------------------------------
@@ -58,7 +69,6 @@ class HiveDriver implements ILocalStorageDriver {
   @override
   Future put({required String key, required value}) async {
     if (_initialized == false) await initHive();
-
     await _box.put(key, value);
   }
 

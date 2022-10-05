@@ -13,6 +13,13 @@ class FavoritesListRepository implements IFavoritesListRepository {
   Future<List<Pokemon>> getFavorites() async {
     var teste = await datasource.getFavorites();
 
+    var p = "";
+
     return [Pokemon(nome: "Teste")];
+  }
+
+  @override
+  Future addFavorite(Pokemon newFavorite) async {
+    await datasource.addFavorite(Pokemon(nome: "Testando favoritos"));
   }
 }

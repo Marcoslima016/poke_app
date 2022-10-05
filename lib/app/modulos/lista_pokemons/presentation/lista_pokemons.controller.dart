@@ -62,6 +62,7 @@ class ListaPokemonsController {
   //----------------------------------- FAVORITAR POKEMON ----------------------------------
 
   Future favoritarPokemon(Pokemon pokemonSelecionado) async {
-    //
+    IFavoritosListManager favoritesListManager = Get.find<IFavoritosListManager>();
+    await favoritesListManager.adicionarFavorito(pokemonSelecionado);
   }
 }

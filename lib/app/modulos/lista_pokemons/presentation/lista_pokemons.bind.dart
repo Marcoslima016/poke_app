@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:poke_app/app/modulos/lista_pokemons/favoritos/domain/usecases/add_favorite.usecase.dart';
 
 import '../../../core/core.imports.dart';
 import '../lista_pokemons.imports.dart';
@@ -56,9 +57,17 @@ class TotemBinding extends Bindings {
       LoadFavorites(repository: Get.find<IFavoritesListRepository>()),
     );
 
+    //-- USECASE ADD FAVORITE --
+    Get.put<IAddFavorite>(
+      AddFavorite(repository: Get.find<IFavoritesListRepository>()),
+    );
+
     //-- USECASE FAVORITES LIST MANAGER --
     Get.put<IFavoritosListManager>(
-      FavoritosListManager(usecaseLoadFavorites: Get.find<ILoadFavorites>()),
+      FavoritosListManager(
+        usecaseLoadFavorites: Get.find<ILoadFavorites>(),
+        usecaseAddFavorite: Get.find<IAddFavorite>(),
+      ),
     );
   }
 }

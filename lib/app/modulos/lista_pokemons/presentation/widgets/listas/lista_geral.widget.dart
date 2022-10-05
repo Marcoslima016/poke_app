@@ -25,16 +25,16 @@ class ListaGeral extends StatelessWidget {
           itemCount: controller.pokemonsList.length,
           itemBuilder: (context, index) {
             return Obx(() {
-              Pokemon item = controller.pokemonsList[index];
+              Pokemon itemPokemon = controller.pokemonsList[index];
               var p = "";
               return Card(
                 margin: EdgeInsets.all(20),
                 child: ListTile(
-                  title: Text(item.nome),
+                  title: Text(itemPokemon.nome),
                   trailing: RaisedButton(
                     child: Text("Favoritar/Desfavoritar"),
                     onPressed: () {
-                      // controller.ativarDesativar(item.id);
+                      controller.favoritarPokemon(itemPokemon);
                     },
                   ),
                 ),
