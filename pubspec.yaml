@@ -14,6 +14,8 @@ dependencies:
   dio: ^4.0.6
   hive: ^2.2.3
   path_provider: ^2.0.11
+  basic_utils: ^3.8.2
+  flutter_screenutil: ^5.5.4
 
   cupertino_icons: ^1.0.2
 
@@ -25,4 +27,22 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+
+
+
+  fonts:
+
+    #-------- NUNITO --------
+
+    - family: NunitoBlack
+      fonts: 
+        - asset: assets/fonts/Nunito/Nunito-Black.ttf
+
+    - family: NunitoExtraBold
+      fonts: 
+        - asset: assets/fonts/Nunito/Nunito-ExtraBold.ttf
+        
+    - family: Nunito
+      fonts: 
+        - asset: assets/fonts/Nunito/Nunito-Light.ttf
 
