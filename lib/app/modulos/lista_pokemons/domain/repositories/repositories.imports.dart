@@ -1,2 +1,2 @@
-export 'i_pokemons_list.repo.dart'; 
-export 'repositories.imports.dart'; 
+export 'i_pokemons_list.repository.dart';
+export 'repositories.imports.dart';
