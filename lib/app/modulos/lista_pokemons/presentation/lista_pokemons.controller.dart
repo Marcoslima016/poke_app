@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../../modulos.imports.dart';
 import '../lista_pokemons.imports.dart';
 import 'presentation.imports.dart';
 
@@ -35,7 +36,7 @@ class ListaPokemonsController {
   //---------------------------------------- BIND ----------------------------------------
 
   static bind() {
-    TotemBinding().dependencies();
+    ListaPokemonsBinding().dependencies();
   }
 
   //---------------------------------- LOAD POKEMON LIST ----------------------------------
@@ -64,8 +65,8 @@ class ListaPokemonsController {
 
   //-------------------------------------- SHOW DETAILS -------------------------------------
 
-  Future showDetails() async {
-    //
+  Future showDetails(Pokemon pokemon) async {
+    DetalhesPokemonView(pokemon: pokemon, onTapFavorite: () async {}).showPopup();
   }
 
   //=============================================== FAVORITOS ===============================================

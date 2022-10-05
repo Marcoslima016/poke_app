@@ -4,7 +4,7 @@ import 'package:poke_app/app/modulos/lista_pokemons/favoritos/domain/usecases/ad
 import '../../../core/core.imports.dart';
 import '../lista_pokemons.imports.dart';
 
-class TotemBinding extends Bindings {
+class ListaPokemonsBinding extends Bindings {
   @override
   void dependencies() {
     //
