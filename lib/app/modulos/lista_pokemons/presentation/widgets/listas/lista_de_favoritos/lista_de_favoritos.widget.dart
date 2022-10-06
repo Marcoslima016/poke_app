@@ -29,7 +29,7 @@ class ListaDeFavoritos extends StatelessWidget {
             itemCount: controller.favoritesList.length,
             itemBuilder: (context, index) {
               return Obx(() {
-                Pokemon itemPokemon = controller.favoritesList[index];
+                PokemonModel itemPokemon = controller.favoritesList[index];
 
                 return CardResumoPokemon(
                   controller: controller,

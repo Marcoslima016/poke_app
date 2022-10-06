@@ -6,11 +6,11 @@ class DetalhesPokemonView {
   late double w;
   late double h;
 
-  Pokemon pokemon;
+  PokemonModel pokemon;
 
   late DetalhesPokemonController controller;
 
-  Future Function(Pokemon pokemonSelecionado) onTapFavorite;
+  Future Function(PokemonModel pokemonSelecionado) onTapFavorite;
 
   DetalhesPokemonView({
     required this.pokemon,
@@ -55,7 +55,7 @@ class DetalhesPokemonView {
 
                   ///[******************************** BODY ******************************]
                   ///
-                  Container(
+                  SizedBox(
                     height: h * 100,
                     child: PopupBody(
                       controller: controller,

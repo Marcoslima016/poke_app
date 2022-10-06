@@ -3,11 +3,11 @@ import 'package:get/get.dart';
 import '../../modulos.imports.dart';
 
 class DetalhesPokemonController {
-  Pokemon pokemon;
+  PokemonModel pokemon;
 
   RxBool isFavorite = false.obs;
 
-  Future Function(Pokemon pokemonSelecionado) callbackOnTapFavorite;
+  Future Function(PokemonModel pokemonSelecionado) callbackOnTapFavorite;
 
   DetalhesPokemonController({
     required this.pokemon,

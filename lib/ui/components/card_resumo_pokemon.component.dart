@@ -6,7 +6,7 @@ import '../../lib.imports.dart';
 
 class CardResumoPokemon extends StatelessWidget {
   ListaPokemonsController controller;
-  Pokemon itemPokemon;
+  PokemonModel itemPokemon;
 
   CardResumoPokemon({
     required this.controller,
@@ -62,12 +62,23 @@ class CardResumoPokemon extends StatelessWidget {
 
                       //------------- INDICADOR FAVORITO -------------
 
-                      itemPokemon.isFavorite
-                          ? Container(
-                              margin: const EdgeInsets.only(left: 4),
-                              child: Icon(Icons.favorite, color: Colors.yellow, size: h * 2.6),
-                            )
-                          : Container(),
+                      // itemPokemon.isFavorite
+                      //     ? Container(
+                      //         margin: const EdgeInsets.only(left: 4),
+                      //         child: Icon(Icons.favorite, color: Colors.yellow, size: h * 2.6),
+                      //       )
+                      //     : Container(),
+
+                      Obx(() {
+                        if (itemPokemon.isFavoriteRx.value) {
+                          return Container(
+                            margin: const EdgeInsets.only(left: 4),
+                            child: Icon(Icons.favorite, color: Colors.yellow, size: h * 2.6),
+                          );
+                        } else {
+                          return Container();
+                        }
+                      }),
                     ],
                   ),
                   //

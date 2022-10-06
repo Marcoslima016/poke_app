@@ -1,12 +1,29 @@
 import 'dart:convert';
 
+import 'package:get/get.dart';
 import 'package:poke_app/app/modulos/detalhes_pokemon/domain/entities/pokemon_details.entity.dart';
 
 import '../../../modulos.imports.dart';
 import '../../lista_pokemons.imports.dart';
 
 class PokemonModel extends Pokemon {
-  PokemonModel({required String id, required String nome, required PokemonDetails? details, required bool isFavorite}) : super(id: id, nome: nome, details: details, isFavorite: isFavorite);
+  //
+
+  RxBool isFavoriteRx = false.obs;
+
+  PokemonModel({required String id, required String nome, required PokemonDetails? details, required bool isFavorite})
+      : super(
+          id: id,
+          nome: nome,
+          details: details,
+          isFavorite: isFavorite,
+        ) {
+    if (super.isFavorite) {
+      isFavoriteRx.value = true;
+    } else {
+      isFavoriteRx.value = false;
+    }
+  }
 
   //TO JSON
   String toJson() => json.encode(toMap());
@@ -31,10 +48,12 @@ class PokemonModel extends Pokemon {
   }
 
   //FROM ENTITY
-  factory PokemonModel.fromEntity(Pokemon entity) => PokemonModel(
-        nome: entity.nome,
-        id: entity.id,
-        details: entity.details,
-        isFavorite: entity.isFavorite,
-      );
+  factory PokemonModel.fromEntity(Pokemon entity) {
+    return PokemonModel(
+      nome: entity.nome,
+      id: entity.id,
+      details: entity.details,
+      isFavorite: entity.isFavorite,
+    );
+  }
 }
