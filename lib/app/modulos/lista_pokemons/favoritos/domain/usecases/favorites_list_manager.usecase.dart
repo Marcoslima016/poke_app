@@ -6,15 +6,18 @@ import 'usecases.imports.dart';
 abstract class IFavoritosListManager {
   Future<List<Pokemon>> loadList();
   Future adicionarFavorito(Pokemon novoFavorito);
+  Future removerFavorito(Pokemon favorite);
 }
 
 class FavoritosListManager implements IFavoritosListManager {
   ILoadFavorites usecaseLoadFavorites;
   IAddFavorite usecaseAddFavorite;
+  IRemoveFavorite usecaseRemoveFavorite;
 
   FavoritosListManager({
     required this.usecaseLoadFavorites,
     required this.usecaseAddFavorite,
+    required this.usecaseRemoveFavorite,
   });
 
   //------------------------------------ LOAD LIST ---------------------------------------
@@ -26,7 +29,15 @@ class FavoritosListManager implements IFavoritosListManager {
 
   //----------------------------------- ADD FAVORITO --------------------------------------
 
+  @override
   Future adicionarFavorito(Pokemon novoFavorito) async {
     await usecaseAddFavorite(novoFavorito);
+  }
+
+  //--------------------------------- REMOVER FAVORITO -------------------------------------
+
+  @override
+  Future removerFavorito(Pokemon favorite) async {
+    await usecaseRemoveFavorite(favorite);
   }
 }

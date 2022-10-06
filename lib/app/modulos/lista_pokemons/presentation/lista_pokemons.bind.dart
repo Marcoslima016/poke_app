@@ -62,11 +62,17 @@ class ListaPokemonsBinding extends Bindings {
       AddFavorite(repository: Get.find<IFavoritesListRepository>()),
     );
 
+    //-- USECASE REMOVE FAVORITE --
+    Get.put<IRemoveFavorite>(
+      RemoveFavorite(repository: Get.find<IFavoritesListRepository>()),
+    );
+
     //-- USECASE FAVORITES LIST MANAGER --
     Get.put<IFavoritosListManager>(
       FavoritosListManager(
         usecaseLoadFavorites: Get.find<ILoadFavorites>(),
         usecaseAddFavorite: Get.find<IAddFavorite>(),
+        usecaseRemoveFavorite: Get.find<IRemoveFavorite>(),
       ),
     );
   }

@@ -35,6 +35,7 @@ class ListaPokemonsController {
     });
 
     bind();
+
     await _loadFavorites();
     await _loadPokemons();
 
@@ -74,6 +75,7 @@ class ListaPokemonsController {
     for (Pokemon pokemon in resultList) {
       favoritesList.add(PokemonModel.fromEntity(pokemon)); //// Com o resultado, é populada a lista observavel.
     }
+    favoritesList.sort((a, b) => (int.parse(a.id)).compareTo(int.parse(b.id)));
   }
 
   //-------------------------------------- SHOW DETAILS -------------------------------------
@@ -95,7 +97,7 @@ class ListaPokemonsController {
     if (!pokemonSelecionado.isFavorite) {
       await _favoritarPokemon(pokemonSelecionado);
     } else {
-      //
+      await _removerFavorito(pokemonSelecionado);
     }
   }
 
@@ -106,5 +108,16 @@ class ListaPokemonsController {
     await favoritesListManager.adicionarFavorito(pokemonSelecionado);
     await _loadFavorites();
     pokemonSelecionado.isFavoriteRx.value = true;
+    favoritesList.sort((a, b) => (int.parse(a.id)).compareTo(int.parse(b.id)));
+  }
+
+  //------------------------------------- REMOVER FAVORITO -----------------------------------
+
+  Future _removerFavorito(PokemonModel pokemonSelecionado) async {
+    IFavoritosListManager favoritesListManager = Get.find<IFavoritosListManager>();
+    await favoritesListManager.removerFavorito(pokemonSelecionado);
+    await _loadFavorites();
+    pokemonSelecionado.isFavoriteRx.value = false;
+    favoritesList.sort((a, b) => (int.parse(a.id)).compareTo(int.parse(b.id)));
   }
 }

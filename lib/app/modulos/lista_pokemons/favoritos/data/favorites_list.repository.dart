@@ -34,4 +34,11 @@ class FavoritesListRepository implements IFavoritesListRepository {
   Future addFavorite(Pokemon newFavorite) async {
     await datasource.addFavorite(newFavorite);
   }
+
+  //----------------------------------------- REMOVE FAVORITE -----------------------------------------
+
+  @override
+  Future removeFavorite(Pokemon favorite) async {
+    await datasource.removeFavorite(favorite);
+  }
 }

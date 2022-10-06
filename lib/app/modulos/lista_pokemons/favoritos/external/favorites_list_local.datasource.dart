@@ -43,4 +43,27 @@ class FavoritesListLocalDatasource implements IFavoritesListDatasource {
 
     await localStorageDriver.putList(key: _dbKey, list: favoritesListMap);
   }
+
+  //----------------------------------------- REMOVE FAVORITE -----------------------------------------
+
+  @override
+  Future removeFavorite(Pokemon favorite) async {
+    List dbList = await localStorageDriver.getList(key: _dbKey);
+    List<PokemonModel> favoritesList = [];
+
+    for (var resultJson in dbList) {
+      favoritesList.add(PokemonModel.fromMap(json.decode(resultJson)));
+    }
+
+    PokemonModel fevoriteToRemove = PokemonModel.fromEntity(favorite);
+
+    favoritesList.removeWhere((item) => item.nome == fevoriteToRemove.nome);
+
+    var favoritesListMap = [];
+    for (PokemonModel favorite in favoritesList) {
+      favoritesListMap.add(favorite.toJson());
+    }
+
+    await localStorageDriver.putList(key: _dbKey, list: favoritesListMap);
+  }
 }
