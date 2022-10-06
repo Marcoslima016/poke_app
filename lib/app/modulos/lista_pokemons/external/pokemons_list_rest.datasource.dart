@@ -8,7 +8,8 @@ class PokemonsListRESTDatasource implements IPokemonsListDatasource {
 
   @override
   Future<Map> getPokemons() async {
-    final response = await _client.get(endPoint: "pokemon?limit=5&offset=0");
+    final response = await _client.get(endPoint: "pokemon?limit=100000&offset=0");
+    // final response = await _client.get(endPoint: "pokemon");
     return response;
   }
   //
