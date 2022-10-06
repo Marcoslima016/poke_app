@@ -6,13 +6,17 @@ import '../../../modulos.imports.dart';
 import '../../lista_pokemons.imports.dart';
 
 class PokemonModel extends Pokemon {
-  PokemonModel({required String id, required String nome, required PokemonDetails? details}) : super(id: id, nome: nome, details: details);
+  PokemonModel({required String id, required String nome, required PokemonDetails? details, required bool isFavorite}) : super(id: id, nome: nome, details: details, isFavorite: isFavorite);
 
   //TO JSON
   String toJson() => json.encode(toMap());
   Map<String, dynamic> toMap() {
+    PokemonDetailsModel pokemonDetailsModel = PokemonDetailsModel.fromEntity(details!);
     return {
       'nome': nome,
+      'id': id,
+      'details': pokemonDetailsModel.toJson(),
+      'isFavorite': isFavorite,
     };
   }
 
@@ -21,7 +25,8 @@ class PokemonModel extends Pokemon {
     return PokemonModel(
       nome: json['nome'],
       id: json['id'],
-      details: PokemonDetailsModel.fromMap(json),
+      details: PokemonDetailsModel.toEntity(PokemonDetailsModel.fromJson(json)),
+      isFavorite: json['isFavorite'],
     );
   }
 
@@ -30,5 +35,6 @@ class PokemonModel extends Pokemon {
         nome: entity.nome,
         id: entity.id,
         details: entity.details,
+        isFavorite: entity.isFavorite,
       );
 }

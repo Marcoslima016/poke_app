@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:poke_app/app/app.imports.dart';
 
 class DetalhesPokemonView {
   late double w;
-  late double h; 
-  
-   Future<bool> showPopup() async {
-    return await showDialog(
+  late double h;
+
+  Pokemon pokemon;
+
+  late DetalhesPokemonController controller;
+
+  Future Function(Pokemon pokemonSelecionado) onTapFavorite;
+
+  DetalhesPokemonView({
+    required this.pokemon,
+    required this.onTapFavorite,
+  }) {
+    controller = DetalhesPokemonController(
+      pokemon: pokemon,
+      callbackOnTapFavorite: onTapFavorite,
+    );
+  }
+
+  Future showPopup() async {
+    await showDialog(
       barrierDismissible: false,
       context: Get.context!,
       builder: (BuildContext context) {
@@ -27,7 +44,7 @@ class DetalhesPokemonView {
                   ///
                   GestureDetector(
                     onTap: () {
-                      // Navigator.pop(context);
+                      Navigator.pop(context);
                     },
                     child: Container(
                       width: w * 100,
@@ -39,8 +56,10 @@ class DetalhesPokemonView {
                   ///[******************************** BODY ******************************]
                   ///
                   Container(
-                    height: h*100,
-                    child: ValidationCodePopupBody(),
+                    height: h * 100,
+                    child: PopupBody(
+                      controller: controller,
+                    ),
                   ),
                   //
                 ],
@@ -49,7 +68,6 @@ class DetalhesPokemonView {
           ),
         );
       },
-    ).then((val) {
-      return val;
-    });
+    );
+  }
 }

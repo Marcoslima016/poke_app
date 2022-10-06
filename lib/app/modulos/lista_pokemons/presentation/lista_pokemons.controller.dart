@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../../modulos.imports.dart';
 import '../lista_pokemons.imports.dart';
 import 'presentation.imports.dart';
 
@@ -21,7 +22,7 @@ class ListaPokemonsController {
   /// quanto no carregamento dos dados de novas páginas.
   RxBool loadingList = false.obs;
 
-  //---------------------------------------- INIT ----------------------------------------
+  //--------------------------------------- INIT ----------------------------------------
 
   ///Metodo de inicialização do modulo.
   ///- Realiza o bind e faz o carregamento da lista de pokemons
@@ -35,7 +36,7 @@ class ListaPokemonsController {
   //---------------------------------------- BIND ----------------------------------------
 
   static bind() {
-    TotemBinding().dependencies();
+    ListaPokemonsBinding().dependencies();
   }
 
   //---------------------------------- LOAD POKEMON LIST ----------------------------------
@@ -44,7 +45,7 @@ class ListaPokemonsController {
   Future loadPokemons() async {
     loadingList.value = true;
     IPokemonsListManager usecaseListManager = Get.find<IPokemonsListManager>(); //// Recupera a implementação do usecase que manipula a lista de pokemons.
-    List<Pokemon> resultList = await usecaseListManager.loadList(); //// Dispara o metodo responsável por carregar a lista de pokemons.
+    List<Pokemon> resultList = await usecaseListManager.loadList(favoritesList: favoritesList); //// Dispara o metodo responsável por carregar a lista de pokemons.
     for (Pokemon pokemon in resultList) {
       pokemonsList.add(pokemon); //// Com o resultado da requisição, é populada a lista observavel.
     }
@@ -57,6 +58,7 @@ class ListaPokemonsController {
   Future loadFavorites() async {
     IFavoritosListManager usecaseFavoritesListManager = Get.find<IFavoritosListManager>();
     List<Pokemon> resultList = await usecaseFavoritesListManager.loadList();
+    favoritesList.clear();
     for (Pokemon pokemon in resultList) {
       favoritesList.add(pokemon); //// Com o resultado, é populada a lista observavel.
     }
@@ -64,18 +66,31 @@ class ListaPokemonsController {
 
   //-------------------------------------- SHOW DETAILS -------------------------------------
 
-  Future showDetails() async {
-    //
+  Future showDetails(Pokemon pokemon) async {
+    DetalhesPokemonView(
+      pokemon: pokemon,
+      onTapFavorite: onTapFavorite,
+    ).showPopup();
   }
 
   //=============================================== FAVORITOS ===============================================
   //Metodos relacionados a manipulacao de favoritos
   //
+  Future onTapFavorite(Pokemon pokemonSelecionado) async {
+    if (!pokemonSelecionado.isFavorite) {
+      await favoritarPokemon(pokemonSelecionado);
+    } else {
+      //
+    }
+  }
 
   //----------------------------------- FAVORITAR POKEMON ----------------------------------
 
   Future favoritarPokemon(Pokemon pokemonSelecionado) async {
     IFavoritosListManager favoritesListManager = Get.find<IFavoritosListManager>();
     await favoritesListManager.adicionarFavorito(pokemonSelecionado);
+    await loadFavorites();
+    pokemonSelecionado.isFavorite = true;
+    var p = "";
   }
 }

@@ -114,9 +114,17 @@ class ListaGeral extends StatelessWidget {
 
                         Padding(
                           padding: EdgeInsets.only(right: w * 3.2),
-                          child: Icon(
-                            Icons.navigate_next_outlined,
-                            color: Colors.grey[350],
+                          child: GestureDetector(
+                            onTap: () {
+                              controller.showDetails(itemPokemon);
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(2),
+                              child: Icon(
+                                Icons.navigate_next_outlined,
+                                color: Colors.grey[350],
+                              ),
+                            ),
                           ),
                         ),
                       ],
