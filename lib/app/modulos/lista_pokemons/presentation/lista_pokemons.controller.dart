@@ -1,11 +1,6 @@
 import 'dart:async';
-
 import 'package:get/get.dart';
-
 import '../../../../lib.imports.dart';
-import '../../modulos.imports.dart';
-import '../lista_pokemons.imports.dart';
-import 'presentation.imports.dart';
 
 class ListaPokemonsController {
   //
@@ -92,8 +87,6 @@ class ListaPokemonsController {
   //Metodos relacionados a manipulacao de favoritos
   //
   Future onTapFavorite(PokemonModel pokemonSelecionado) async {
-    // PokemonModel pokemonModel = PokemonModel.fromEntity(pokemonSelecionado);
-
     if (!pokemonSelecionado.isFavorite) {
       await _favoritarPokemon(pokemonSelecionado);
     } else {
@@ -111,7 +104,7 @@ class ListaPokemonsController {
     favoritesList.sort((a, b) => (int.parse(a.id)).compareTo(int.parse(b.id)));
   }
 
-  //------------------------------------- REMOVER FAVORITO -----------------------------------
+  //------------------------------------ REMOVER FAVORITO -----------------------------------
 
   Future _removerFavorito(PokemonModel pokemonSelecionado) async {
     IFavoritosListManager favoritesListManager = Get.find<IFavoritosListManager>();
