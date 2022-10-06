@@ -42,7 +42,23 @@ class ListaDeFavoritos extends StatelessWidget {
           //
           //---------------------- EXIBIR LOADING ----------------------
 
-          return Container();
+          return Column(
+            children: [
+              SizedBox(
+                width: w * 10,
+                height: w * 10,
+                child: const CircularProgressIndicator(
+                  backgroundColor: Colors.green,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              ),
+              const SizedBox(height: 22),
+              Text(
+                "Carregando lista",
+                style: TextStyle(color: Colors.grey[400]),
+              ),
+            ],
+          );
         }
       }),
     );
