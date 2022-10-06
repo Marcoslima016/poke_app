@@ -22,7 +22,7 @@ class ListaPokemonsController {
   /// quanto no carregamento dos dados de novas páginas.
   RxBool loadingList = false.obs;
 
-  //---------------------------------------- INIT ----------------------------------------
+  //--------------------------------------- INIT ----------------------------------------
 
   ///Metodo de inicialização do modulo.
   ///- Realiza o bind e faz o carregamento da lista de pokemons
@@ -58,6 +58,7 @@ class ListaPokemonsController {
   Future loadFavorites() async {
     IFavoritosListManager usecaseFavoritesListManager = Get.find<IFavoritosListManager>();
     List<Pokemon> resultList = await usecaseFavoritesListManager.loadList();
+    favoritesList.clear();
     for (Pokemon pokemon in resultList) {
       favoritesList.add(pokemon); //// Com o resultado, é populada a lista observavel.
     }
@@ -75,7 +76,6 @@ class ListaPokemonsController {
   //=============================================== FAVORITOS ===============================================
   //Metodos relacionados a manipulacao de favoritos
   //
-
   Future onTapFavorite(Pokemon pokemonSelecionado) async {
     if (!pokemonSelecionado.isFavorite) {
       await favoritarPokemon(pokemonSelecionado);
@@ -90,6 +90,7 @@ class ListaPokemonsController {
     IFavoritosListManager favoritesListManager = Get.find<IFavoritosListManager>();
     await favoritesListManager.adicionarFavorito(pokemonSelecionado);
     await loadFavorites();
+    pokemonSelecionado.isFavorite = true;
     var p = "";
   }
 }
