@@ -3,9 +3,16 @@ import 'package:flutter/material.dart';
 class PrimaryCard extends StatelessWidget {
   Widget child;
 
+  double? marginTop;
+
+  bool _useDefaultMarginTop = true;
+
   PrimaryCard({
     required this.child,
-  });
+    this.marginTop,
+  }) {
+    if (marginTop != null) _useDefaultMarginTop = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +20,7 @@ class PrimaryCard extends StatelessWidget {
     double w = MediaQuery.of(context).size.width / 100;
 
     return Container(
-      margin: EdgeInsets.only(top: h * 2.2),
+      margin: EdgeInsets.only(top: _useDefaultMarginTop ? h * 2.2 : marginTop!),
       width: w * 100,
       decoration: BoxDecoration(
         color: Colors.white,
