@@ -25,19 +25,35 @@ class ListaDeFavoritos extends StatelessWidget {
           //
           //---------------------- EXIBIR LISTA ----------------------
 
-          return ListView.builder(
-            itemCount: controller.favoritesList.length,
-            itemBuilder: (context, index) {
-              return Obx(() {
-                PokemonModel itemPokemon = controller.favoritesList[index];
+          if (controller.favoritesList.isNotEmpty) {
+            return ListView.builder(
+              itemCount: controller.favoritesList.length,
+              itemBuilder: (context, index) {
+                return Obx(() {
+                  PokemonModel itemPokemon = controller.favoritesList[index];
 
-                return CardResumoPokemon(
-                  controller: controller,
-                  itemPokemon: itemPokemon,
-                );
-              });
-            },
-          );
+                  return CardResumoPokemon(
+                    controller: controller,
+                    itemPokemon: itemPokemon,
+                  );
+                });
+              },
+            );
+          } else {
+            return Center(
+              child: Padding(
+                padding: EdgeInsets.only(left: w * 8, right: w * 9, bottom: h * 11),
+                child: Text(
+                  "Sua lista de favoritos esta vazia. Adicione um pokemon como favorito para poder ver quando estiver sem internet.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey[350],
+                  ),
+                ),
+              ),
+            );
+          }
         } else {
           //
           //---------------------- EXIBIR LOADING ----------------------

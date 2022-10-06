@@ -62,13 +62,6 @@ class CardResumoPokemon extends StatelessWidget {
 
                       //------------- INDICADOR FAVORITO -------------
 
-                      // itemPokemon.isFavorite
-                      //     ? Container(
-                      //         margin: const EdgeInsets.only(left: 4),
-                      //         child: Icon(Icons.favorite, color: Colors.yellow, size: h * 2.6),
-                      //       )
-                      //     : Container(),
-
                       Obx(() {
                         if (itemPokemon.isFavoriteRx.value) {
                           return Container(
@@ -84,7 +77,8 @@ class CardResumoPokemon extends StatelessWidget {
                   //
                   //------------ ID DO POKEMON ------------
                   //
-                  SizedBox(height: 2),
+                  const SizedBox(height: 2),
+
                   Text(
                     "ID: " + itemPokemon.id,
                     style: TextStyle(
@@ -102,13 +96,13 @@ class CardResumoPokemon extends StatelessWidget {
           //--------- BTN VER MAIS ---------
 
           Padding(
-            padding: EdgeInsets.only(right: w * 3.2),
+            padding: EdgeInsets.only(right: w * 2.5),
             child: GestureDetector(
               onTap: () {
                 controller.showDetails(itemPokemon);
               },
               child: Container(
-                padding: const EdgeInsets.all(2),
+                padding: const EdgeInsets.all(10),
                 child: Icon(
                   Icons.navigate_next_outlined,
                   color: Colors.grey[350],
