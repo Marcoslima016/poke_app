@@ -5,13 +5,17 @@ import '../../modulos.imports.dart';
 class DetalhesPokemonController {
   Pokemon pokemon;
 
+  Future Function(Pokemon pokemonSelecionado) onTapFavorite;
+
   DetalhesPokemonController({
     required this.pokemon,
+    required this.onTapFavorite,
   });
 
   Future init() async {
     DetalhesPokemonBinding().dependencies();
     await checkDetailsData();
+    return true;
   }
 
   //--------------------------------------------------- CHECK DETAILS ---------------------------------------------------
@@ -30,6 +34,7 @@ class DetalhesPokemonController {
   ///Consulta a API para recuperar os dados de detalhes
   Future loadPokemonDetails() async {
     ILoadPokemonDetails usecaseLoadDetails = Get.find<ILoadPokemonDetails>();
-    await usecaseLoadDetails.call(pokemon);
+    PokemonDetails details = await usecaseLoadDetails.call(pokemon);
+    pokemon.details = details;
   }
 }

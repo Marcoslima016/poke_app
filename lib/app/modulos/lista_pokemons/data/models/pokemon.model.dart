@@ -11,8 +11,11 @@ class PokemonModel extends Pokemon {
   //TO JSON
   String toJson() => json.encode(toMap());
   Map<String, dynamic> toMap() {
+    PokemonDetailsModel pokemonDetailsModel = PokemonDetailsModel.fromEntity(details!);
     return {
       'nome': nome,
+      'id': id,
+      'details': pokemonDetailsModel.toJson(),
     };
   }
 
@@ -21,7 +24,7 @@ class PokemonModel extends Pokemon {
     return PokemonModel(
       nome: json['nome'],
       id: json['id'],
-      details: PokemonDetailsModel.fromMap(json),
+      details: PokemonDetailsModel.toEntity(PokemonDetailsModel.fromJson(json)),
     );
   }
 

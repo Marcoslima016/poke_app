@@ -35,7 +35,7 @@ class PopupBody extends StatelessWidget {
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   //
-                  //------- Carregando -------
+                  //------------------------------------------------ Carregando ------------------------------------------------
 
                   return Padding(
                     padding: EdgeInsets.symmetric(vertical: h * 8),
@@ -58,7 +58,65 @@ class PopupBody extends StatelessWidget {
                     ),
                   );
                 } else {
-                  return Container();
+                  //------------------------------------------------- CONTEUDO -------------------------------------------------
+
+                  return Column(
+                    children: [
+                      //------------- CARD SUPERIOR -------------
+                      Container(
+                        margin: EdgeInsets.all(2),
+                        width: w * 100,
+                        // height: h * 28,
+                        decoration: const BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                        ),
+                        child: Column(
+                          children: [
+                            //
+                            SizedBox(height: h * 1.5),
+                            //--- IMAGEM ---
+                            Container(
+                              width: w * 30,
+                              height: w * 30,
+                              decoration: const BoxDecoration(
+                                // color: Colors.grey[200],
+                                borderRadius: const BorderRadius.all(Radius.circular(200)),
+                              ),
+                              child: Image.network(
+                                controller.pokemon.imgURL,
+                                scale: 1.0,
+                              ),
+                            ),
+
+                            //--- NOME ---
+                            Text(
+                              controller.pokemon.nome,
+                              style: TextStyle(
+                                fontFamily: "NunitoBlack",
+                                fontWeight: FontWeight.w900,
+                                fontSize: 18,
+                                color: Colors.grey[800],
+                              ),
+                            ),
+
+                            SizedBox(height: h * 5),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 35),
+                      GestureDetector(
+                        onTap: () {
+                          controller.onTapFavorite(controller.pokemon);
+                        },
+                        child: const Icon(
+                          Icons.favorite,
+                          size: 25,
+                        ),
+                      ),
+                    ],
+                  );
                 }
               },
             ),

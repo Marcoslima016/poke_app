@@ -8,7 +8,7 @@ class PokemonDetailsRestDatasource implements IPokemonDetailsDatasource {
   final RESTClient _client = RESTClient();
 
   @override
-  Future<Map> loadDetails({required String pokeName}) async {
+  Future<Map<String, dynamic>> loadDetails({required String pokeName}) async {
     final response = await _client.get(endPoint: "pokemon-species/" + pokeName);
     return response;
   }

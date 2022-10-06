@@ -10,13 +10,16 @@ class DetalhesPokemonView {
 
   late DetalhesPokemonController controller;
 
-  Future Function() onTapFavorite;
+  Future Function(Pokemon pokemonSelecionado) onTapFavorite;
 
   DetalhesPokemonView({
     required this.pokemon,
     required this.onTapFavorite,
   }) {
-    controller = DetalhesPokemonController(pokemon: pokemon);
+    controller = DetalhesPokemonController(
+      pokemon: pokemon,
+      onTapFavorite: onTapFavorite,
+    );
   }
 
   Future showPopup() async {

@@ -66,7 +66,10 @@ class ListaPokemonsController {
   //-------------------------------------- SHOW DETAILS -------------------------------------
 
   Future showDetails(Pokemon pokemon) async {
-    DetalhesPokemonView(pokemon: pokemon, onTapFavorite: () async {}).showPopup();
+    DetalhesPokemonView(
+      pokemon: pokemon,
+      onTapFavorite: favoritarPokemon,
+    ).showPopup();
   }
 
   //=============================================== FAVORITOS ===============================================
@@ -78,5 +81,6 @@ class ListaPokemonsController {
   Future favoritarPokemon(Pokemon pokemonSelecionado) async {
     IFavoritosListManager favoritesListManager = Get.find<IFavoritosListManager>();
     await favoritesListManager.adicionarFavorito(pokemonSelecionado);
+    var p = "";
   }
 }

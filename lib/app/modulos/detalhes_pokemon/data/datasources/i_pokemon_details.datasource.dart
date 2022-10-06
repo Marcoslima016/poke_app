@@ -1,3 +1,3 @@
 abstract class IPokemonDetailsDatasource {
-  Future<Map> loadDetails({required String pokeName});
+  Future<Map<String, dynamic>> loadDetails({required String pokeName});
 }

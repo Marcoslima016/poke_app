@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '../../../modulos.imports.dart';
 import '../../detalhes_pokemon.imports.dart';
 
@@ -10,11 +12,11 @@ class PokemonDetailsRepository implements IPokemonDetailsRepository {
 
   @override
   Future<PokemonDetails> loadDetails(Pokemon pokemon) async {
-    Map apiResponse = await datasource.loadDetails(pokeName: pokemon.nome);
+    Map<String, dynamic> apiResponse = await datasource.loadDetails(pokeName: pokemon.nome);
 
-    var p = "";
+    var t = PokemonDetailsModel.fromJson(apiResponse);
 
-    return PokemonDetails(description: "");
+    return PokemonDetailsModel.toEntity(PokemonDetailsModel.fromJson(apiResponse));
   }
   //
 }
