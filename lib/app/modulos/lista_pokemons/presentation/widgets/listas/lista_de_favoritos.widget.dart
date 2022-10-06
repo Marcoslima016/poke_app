@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../../../lib.imports.dart';
-import '../../../../lista_pokemons.imports.dart';
-import '../../../presentation.imports.dart';
+import '../../../../../../lib.imports.dart';
+import '../../../lista_pokemons.imports.dart';
+import '../../presentation.imports.dart';
 
 class ListaDeFavoritos extends StatelessWidget {
   late ListaPokemonsController controller;

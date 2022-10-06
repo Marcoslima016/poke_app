@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../../lib.imports.dart';
-import '../../../../lista_pokemons.imports.dart';
-import '../../../presentation.imports.dart';
 
 class ListaGeral extends StatelessWidget {
   late ListaPokemonsController controller;
