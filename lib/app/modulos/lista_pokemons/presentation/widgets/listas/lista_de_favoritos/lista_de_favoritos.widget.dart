@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../../../lib.imports.dart';
 import '../../../../lista_pokemons.imports.dart';
 import '../../../presentation.imports.dart';
 
@@ -20,8 +21,6 @@ class ListaDeFavoritos extends StatelessWidget {
       width: w * 100,
       height: h * 60,
       child: Obx(() {
-        var p = "";
-
         if (controller.loadingList.value == false) {
           //
           //---------------------- EXIBIR LISTA ----------------------
@@ -31,18 +30,10 @@ class ListaDeFavoritos extends StatelessWidget {
             itemBuilder: (context, index) {
               return Obx(() {
                 Pokemon itemPokemon = controller.favoritesList[index];
-                var p = "";
-                return Card(
-                  margin: EdgeInsets.all(20),
-                  child: ListTile(
-                    title: Text(itemPokemon.nome),
-                    trailing: RaisedButton(
-                      child: Text("Favoritar/Desfavoritar"),
-                      onPressed: () {
-                        // controller.favoritarPokemon(itemPokemon);
-                      },
-                    ),
-                  ),
+
+                return CardResumoPokemon(
+                  controller: controller,
+                  itemPokemon: itemPokemon,
                 );
               });
             },

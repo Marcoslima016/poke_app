@@ -14,6 +14,7 @@ class AddFavorite implements IAddFavorite {
 
   @override
   Future call(Pokemon newFavorite) async {
+    newFavorite.isFavorite = true; 
     await repository.addFavorite(newFavorite);
   }
   //
