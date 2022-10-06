@@ -39,7 +39,7 @@ class ListaDeFavoritos extends StatelessWidget {
                     trailing: RaisedButton(
                       child: Text("Favoritar/Desfavoritar"),
                       onPressed: () {
-                        controller.favoritarPokemon(itemPokemon);
+                        // controller.favoritarPokemon(itemPokemon);
                       },
                     ),
                   ),

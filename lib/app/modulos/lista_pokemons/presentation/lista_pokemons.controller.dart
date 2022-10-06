@@ -28,8 +28,8 @@ class ListaPokemonsController {
   ///- Realiza o bind e faz o carregamento da lista de pokemons
   Future<bool> init() async {
     bind();
-    await loadFavorites();
-    await loadPokemons();
+    await _loadFavorites();
+    await _loadPokemons();
     return true;
   }
 
@@ -42,7 +42,7 @@ class ListaPokemonsController {
   //---------------------------------- LOAD POKEMON LIST ----------------------------------
 
   ///Faz o carregamento inicial da lista de pokemons
-  Future loadPokemons() async {
+  Future _loadPokemons() async {
     loadingList.value = true;
     IPokemonsListManager usecaseListManager = Get.find<IPokemonsListManager>(); //// Recupera a implementação do usecase que manipula a lista de pokemons.
     List<Pokemon> resultList = await usecaseListManager.loadList(favoritesList: favoritesList); //// Dispara o metodo responsável por carregar a lista de pokemons.
@@ -55,7 +55,7 @@ class ListaPokemonsController {
   //---------------------------------- LOAD FAVORITES LIST ---------------------------------
 
   ///Carrega a lista de favoritos
-  Future loadFavorites() async {
+  Future _loadFavorites() async {
     IFavoritosListManager usecaseFavoritesListManager = Get.find<IFavoritosListManager>();
     List<Pokemon> resultList = await usecaseFavoritesListManager.loadList();
     favoritesList.clear();
@@ -66,6 +66,7 @@ class ListaPokemonsController {
 
   //-------------------------------------- SHOW DETAILS -------------------------------------
 
+  ///Exibe os detalhes de um pokemon
   Future showDetails(Pokemon pokemon) async {
     DetalhesPokemonView(
       pokemon: pokemon,
@@ -78,7 +79,7 @@ class ListaPokemonsController {
   //
   Future onTapFavorite(Pokemon pokemonSelecionado) async {
     if (!pokemonSelecionado.isFavorite) {
-      await favoritarPokemon(pokemonSelecionado);
+      await _favoritarPokemon(pokemonSelecionado);
     } else {
       //
     }
@@ -86,10 +87,10 @@ class ListaPokemonsController {
 
   //----------------------------------- FAVORITAR POKEMON ----------------------------------
 
-  Future favoritarPokemon(Pokemon pokemonSelecionado) async {
+  Future _favoritarPokemon(Pokemon pokemonSelecionado) async {
     IFavoritosListManager favoritesListManager = Get.find<IFavoritosListManager>();
     await favoritesListManager.adicionarFavorito(pokemonSelecionado);
-    await loadFavorites();
+    await _loadFavorites();
     pokemonSelecionado.isFavorite = true;
     var p = "";
   }
