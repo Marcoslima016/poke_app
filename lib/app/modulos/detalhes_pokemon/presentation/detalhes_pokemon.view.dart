@@ -18,7 +18,7 @@ class DetalhesPokemonView {
   }) {
     controller = DetalhesPokemonController(
       pokemon: pokemon,
-      onTapFavorite: onTapFavorite,
+      callbackOnTapFavorite: onTapFavorite,
     );
   }
 

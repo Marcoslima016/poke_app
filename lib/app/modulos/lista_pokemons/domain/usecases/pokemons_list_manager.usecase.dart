@@ -7,7 +7,7 @@ import 'usecases.imports.dart';
 /// Normalmente esse usecase é composto de metodos utilizados para manipular uma lista,
 /// como por exemplo load, update, delete, etc. Nesse caso, ele precisou conter apenas o metodo load.
 abstract class IPokemonsListManager {
-  Future<List<Pokemon>> loadList();
+  Future<List<Pokemon>> loadList({required List<Pokemon> favoritesList});
 }
 
 class PokemonsListManager implements IPokemonsListManager {
@@ -21,8 +21,8 @@ class PokemonsListManager implements IPokemonsListManager {
 
   ///Faz o carregamento inicial da lista
   @override
-  Future<List<Pokemon>> loadList() async {
-    return await usecaseLoadList();
+  Future<List<Pokemon>> loadList({required List<Pokemon> favoritesList}) async {
+    return await usecaseLoadList(favoritesList: favoritesList);
   }
   //
 }

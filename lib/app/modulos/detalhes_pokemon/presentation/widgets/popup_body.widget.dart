@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../presentation.imports.dart';
 
@@ -108,12 +109,21 @@ class PopupBody extends StatelessWidget {
                       const SizedBox(height: 35),
                       GestureDetector(
                         onTap: () {
-                          controller.onTapFavorite(controller.pokemon);
+                          controller.onTapFavorite();
                         },
-                        child: const Icon(
-                          Icons.favorite,
-                          size: 25,
-                        ),
+                        child: Obx(() {
+                          if (controller.isFavorite.value) {
+                            return const Icon(
+                              Icons.favorite,
+                              size: 25,
+                            );
+                          } else {
+                            return const Icon(
+                              Icons.favorite_border,
+                              size: 25,
+                            );
+                          }
+                        }),
                       ),
                     ],
                   );

@@ -28,6 +28,7 @@ class PokemonsListRepository implements IPokemonsListRepo {
 
       resultList.add(
         Pokemon(
+          isFavorite: false,
           nome: result["name"],
           id: id,
           details: null, //// Inicialmente, nao tem os detalhes do pokemon, os detalhes serao consultados se selecionar para ver os detalhes do pokemon

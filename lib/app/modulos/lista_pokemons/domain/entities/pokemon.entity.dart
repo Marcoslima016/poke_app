@@ -4,6 +4,7 @@ class Pokemon {
   final String id;
   final String nome;
   late final String imgURL;
+  bool isFavorite;
 
   ///Detalhes do pokemon
   PokemonDetails? details;
@@ -12,6 +13,7 @@ class Pokemon {
     required this.id,
     required this.nome,
     required this.details,
+    required this.isFavorite,
   }) {
     imgURL = generateImgURL(id);
   }
