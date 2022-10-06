@@ -1,8 +1,8 @@
 name: poke_app
-description: Aplicativo Poke App - Versão 1.0.0
+description: Aplicativo Poke App 
 
 publish_to: 'none' 
-version: 1.0.0+1
+version: 1.0.1+2
 
 environment:
   sdk: ">=2.16.2 <3.0.0"
